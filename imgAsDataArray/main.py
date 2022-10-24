@@ -1,23 +1,38 @@
 import cv2 
 import numpy as np
+from time import sleep
 
 def main():
+       
+    boardSize = int(input("Enter your board size: "))
+    numSquares = int(input("How many squares: "))
+    squareSize = int(boardSize / numSquares)
+       
+    darkColor = (0,0,0) 
+    lightColor = (0,0,100)
+    nowColor = darkColor
+        
     while True:
-        frame = np.zeros([400,400,3],dtype = np.uint8)  # type: ignore
-        frame[:,:] = [255,255,255]
-        for i in range(0,400,50):
-            j = 50 + i
-            k = 100 + i 
-            l = 150 + i
-            m = 200 + i
-            frame[i:j,j:k] = [0,0,0]
-            frame[j:k,i:j] = [0,0,0]
-            frame[:j,l:] = [0,0,0]
-            frame[l:,:j] = [0,0,0]
-            cv2.imshow('MyWindow',frame)
+        x = np.zeros([boardSize,boardSize,3],dtype=np.uint8)  # type: ignore
+      
+        for row in range(0,numSquares):
+            for column in range(0,numSquares):
+                x[squareSize*row:squareSize*(row+1),squareSize*column:squareSize*(column+1)] = nowColor
+                if (nowColor == darkColor):
+                    nowColor = lightColor
+                else:
+                    nowColor = darkColor
+        
+            if (nowColor == darkColor):
+                nowColor = lightColor
+            else:
+                nowColor = darkColor
+        cv2.imshow("board",x)
+
 
         if cv2.waitKey(1) & 0xff == ord('q'):
             break
+
 
 if __name__ == "__main__":
     main()
