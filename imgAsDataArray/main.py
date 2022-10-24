@@ -22,7 +22,7 @@ def main():
                     nowColor = lightColor
                 else:
                     nowColor = darkColor
-        
+            
             if (nowColor == darkColor):
                 nowColor = lightColor
             else:
