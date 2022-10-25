@@ -1,5 +1,6 @@
 
 import cv2
+from cv2 import circle
 import numpy as np
 
 def main():
@@ -16,6 +17,7 @@ def main():
     while True:
         ignore, frame = cam.read()
         cv2.rectangle(frame,(280,200),(400,300),(0,255,0),2)
+        # cv2,circle(frame,(100,100),25,(0,0,0),1)
         cv2.imshow('webcam',frame)
         cv2.moveWindow('webcam',0,0)
         if cv2.waitKey(1) & 0xff == ord('q'):
