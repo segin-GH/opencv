@@ -33,8 +33,5 @@ def printFPS(previousTime,frame):
     cv2.putText(frame,"FPS:"+str(int(fps)),(2,15),cv2.FONT_HERSHEY_COMPLEX_SMALL,.8,(0,0,0),1)
 
 
-
-
-
 if __name__ == "__main__":
     main()
