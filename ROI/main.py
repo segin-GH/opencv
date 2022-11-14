@@ -1,8 +1,7 @@
-
 import cv2
 
-def main ():
 
+def main ():
     print(cv2.__version__)
     width = 640
     height = 460
@@ -29,8 +28,6 @@ def main ():
         if cv2.waitKey(1) & 0xff == ord('q'):
             break
     cam.release()
-
-
 
 
 if __name__ == "__main__":
