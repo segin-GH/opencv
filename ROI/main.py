@@ -11,18 +11,18 @@ def main():
     cam.set(cv2.CAP_PROP_FPS, 30)
     cam.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc(*'MJPG'))
 
-    while (True):
+    while True:
         ignore, frame = cam.read()
-        frameROI = frame[100:210, 250:390]
-        frameROIGray = cv2.cvtColor(frameROI, cv2.COLOR_BGR2GRAY)
-        frameROIGray = cv2.cvtColor(frameROIGray, cv2.COLOR_GRAY2BGR)
-        frame[100:210, 250:390] = frameROIGray
+        frame_roi = frame[100:210, 250:390]
+        frame_gray_roi = cv2.cvtColor(frame_roi, cv2.COLOR_BGR2GRAY)
+        frame_gray_roi = cv2.cvtColor(frame_gray_roi, cv2.COLOR_GRAY2BGR)
+        frame[100:210, 250:390] = frame_gray_roi
 
         cv2.imshow('webcam', frame)
         cv2.moveWindow('webcam', 0, 0)
-        cv2.imshow('myROI', frameROI)
+        cv2.imshow('myROI', frame_roi)
         cv2.moveWindow('myROI', 650, 0)
-        cv2.imshow('myGrayROI', frameROIGray)
+        cv2.imshow('myGrayROI', frame_gray_roi)
         cv2.moveWindow('myGrayROI', 650, 300)
 
         if cv2.waitKey(1) & 0xff == ord('q'):
