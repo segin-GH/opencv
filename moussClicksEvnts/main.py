@@ -1,13 +1,35 @@
 import cv2
 
+evt = 0
+
 
 def mouse_click(event, xPos, yPos, flag, params):
-    if event == cv2.EVENT_LBUTTONDOWN:
-        print("Mouse Event was: ", event)
-        print(f"at position,{xPos}, {yPos}")
-    if event == cv2.EVENT_LBUTTONUP:
-        print("Mouse Event was: ", event)
-        print(f"at position,{xPos}, {yPos}")
+    global evt
+    global pnt1
+    global pnt2
+    global pnt3
+    global pnt4
+
+    global pnt5
+    global pnt6
+    if event is cv2.EVENT_LBUTTONDOWN:
+        print("Mouse Event was L D : ", event)
+        print(f"at position,x={xPos}, y={yPos}")
+        evt = event
+        pnt1 = xPos
+        pnt2 = yPos
+        pnt5 = (xPos, yPos)
+    if event is cv2.EVENT_LBUTTONUP:
+        print("Mouse Event was L U : ", event)
+        print(f"at position,x={xPos}, y={yPos}")
+        evt = event
+        pnt3 = xPos
+        pnt4 = yPos
+        pnt6 = (xPos, yPos)
+    if event is cv2.EVENT_RBUTTONUP:
+        print("Mouse Event was R U : ", event)
+        print(f"at position,x={xPos}, y={yPos}")
+        evt = event
 
 
 def main():
@@ -24,7 +46,16 @@ def main():
     cv2.setMouseCallback('webcam', mouse_click)
 
     while True:
-        _, frame = cam.read()
+        ign, frame = cam.read()
+        if evt == 4:
+            roi_frame = frame[pnt2: pnt4, pnt1: pnt3]
+            #   verifying that both width and height are greater than 0.
+            if roi_frame.shape[0] > 0 and roi_frame.shape[1] > 0:
+                cv2.rectangle(frame, (pnt5), (pnt6), (0, 255, 0), 2)
+                # print(pnt5)
+                # print(pnt6)
+                cv2.imshow('roi frame', roi_frame)
+                cv2.moveWindow('roi frame', int(width*1.1), 0)
         cv2.imshow('webcam', frame)
         cv2.moveWindow('webcam', 10, 20)
 
