@@ -16,7 +16,7 @@ def main():
         cv.moveWindow("cam3", 0, 640)
         cv.moveWindow("cam4", 640, 1000)
 
-        if cv.waitKey(1) & 0xFF == ord("q"):  #
+        if cv.waitKey(1) & 0xFF == ord("q"):
             break
 
     cam.release()
