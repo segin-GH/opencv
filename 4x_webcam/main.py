@@ -6,11 +6,11 @@ def main():
 
     while 1:
         ignore, frame = cam.read()
-        greayframe = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
-        cv.imshow("cam1", greayframe)
+        gray_frame = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
+        cv.imshow("cam1", gray_frame)
         cv.imshow("cam2", frame)
         cv.imshow("cam3", frame)
-        cv.imshow("cam4", greayframe)
+        cv.imshow("cam4", gray_frame)
         cv.moveWindow("cam1", 0, 0)
         cv.moveWindow("cam2", 640, 0)
         cv.moveWindow("cam3", 0, 640)
