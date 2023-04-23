@@ -1,24 +1,32 @@
 import cv2
+import numpy as np
+
+white = (225, 225, 255)
+
+
+def mapFromTo(x, a, b, c, d):
+    y = (x-a)/(b-a)*(d-c)+c
+    return y
 
 
 def main():
     print(cv2.__version__)
-    width = 640
-    height = 460
-    cam = cv2.VideoCapture(2)
-    cam.set(cv2.CAP_PROP_FRAME_WIDTH, width)
-    cam.set(cv2.CAP_PROP_FRAME_HEIGHT, height)
-    cam.set(cv2.CAP_PROP_FPS, 30)
-    cam.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc(*"MJPG"))
 
     while True:
-        _, frame = cam.read()
-        cv2.imshow("webcam", frame)
-        cv2.moveWindow("webcam", 0, 0)
+        x_frame = np.zeros([255, 600, 3], dtype=np.uint8)
+        x_frame[:100, :100] = (0, 0, 225)
+
+        y_frame = cv2.cvtColor(x_frame[:100, :100], cv2.COLOR_BGR2HSV)
+        y_frame [:, :] = (100, 225, 225)
+        y_frame = cv2.cvtColor(y_frame[:100, :100], cv2.COLOR_HSV2BGR)
+
+        cv2.imshow("webcam1", x_frame)
+        cv2.moveWindow("webcam1", 0, 10)
+        cv2.imshow("webcam", y_frame)
+        cv2.moveWindow("webcam", 610, 10)
 
         if cv2.waitKey(1) & 0xFF == ord("q"):
             break
-    cam.release()
 
 
 if __name__ == "__main__":
