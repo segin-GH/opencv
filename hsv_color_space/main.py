@@ -34,7 +34,8 @@ def main():
         _, frame = cam.read()
         if evt is 1:
             x = np.zeros([250, 250, 3], dtype=np.uint8)
-            clr = frame[y_val, x_val]
+            y = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+            clr = y[y_val, x_val]
             print(clr)
             x[:, :] = clr
             cv2.putText(x, str(clr), (0, 50),
