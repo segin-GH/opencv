@@ -2,7 +2,7 @@ import cv2 as cv
 
 
 def main():
-    cam = cv.VideoCapture(0)
+    cam = cv.VideoCapture(2)
 
     while 1:
         ignore, frame = cam.read()
