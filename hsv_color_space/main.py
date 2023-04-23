@@ -33,7 +33,9 @@ def main():
     while True:
         _, frame = cam.read()
         if evt is 1:
+            """ x Frame is shows BGR """
             x = np.zeros([250, 250, 3], dtype=np.uint8)
+            """ y is for hsv """
             y = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
             clr = frame[y_val, x_val]
             clr1 = y[y_val, x_val]
