@@ -35,10 +35,13 @@ def main():
         if evt is 1:
             x = np.zeros([250, 250, 3], dtype=np.uint8)
             y = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-            clr = y[y_val, x_val]
+            clr = frame[y_val, x_val]
+            clr1 = y[y_val, x_val]
             print(clr)
             x[:, :] = clr
             cv2.putText(x, str(clr), (0, 50),
+                        cv2.FONT_HERSHEY_COMPLEX, 1, (0, 0, 0), 1)
+            cv2.putText(x, str(clr1), (0, 100),
                         cv2.FONT_HERSHEY_COMPLEX, 1, (0, 0, 0), 1)
             cv2.imshow("color_picker", x)
             cv2.moveWindow("color_picker", width, 0)
